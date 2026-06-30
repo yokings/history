@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 背景色系 */
+  --color-bg-deep: #0a0807;
+  --color-bg-dark: #14100d;
+  --color-bg-card: #1c1714;
+
+  /* 青铜色系 */
+  --color-bronze: #3a6b5c;
+  --color-bronze-light: #6ba883;
+  --color-bronze-dark: #1f3d34;
+
+  /* 金箔色系 */
+  --color-gold: #c9a961;
+  --color-gold-light: #e8c97a;
+  --color-gold-dark: #8a7340;
+
+  /* 强调色 */
+  --color-cinnabar: #a83232;
+  --color-jade: #e8e4d8;
+
+  /* 字体 */
+  --font-serif: 'Noto Serif SC', serif;
+  --font-sans: 'Noto Sans SC', sans-serif;
+  --font-display: 'ZCOOL XiaoWei', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg-deep);
+  color: var(--color-jade);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-bronze), var(--color-gold-dark));
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* 文字选择 */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-bg-deep);
+}
+
+/* 通用工具类 */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-bronze {
+  background: linear-gradient(135deg, var(--color-bronze-light) 0%, var(--color-bronze) 50%, var(--color-bronze-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 青铜纹理背景 */
+.bg-bronze-texture {
+  background-color: var(--color-bg-deep);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(58, 107, 92, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(201, 169, 97, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(168, 50, 50, 0.03) 0%, transparent 60%);
+}
+
+/* 印章式标签 */
+.seal-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background: var(--color-cinnabar);
+  color: var(--color-jade);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(168, 50, 50, 0.4);
+}
+
+/* 回纹分隔线 */
+.meander-divider {
+  height: 24px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 8px,
+    var(--color-gold-dark) 8px,
+    var(--color-gold-dark) 10px,
+    transparent 10px,
+    transparent 18px,
+    var(--color-gold-dark) 18px,
+    var(--color-gold-dark) 20px
+  );
+  opacity: 0.4;
+}
+
+/* 卡片悬浮金边 */
+.card-gold-glow {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-gold-glow:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--color-gold), 0 0 40px rgba(201, 169, 97, 0.3);
+}
+
+/* 滚动渐显 */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 青铜粒子 */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-bronze-light) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* 弹窗动画 */
+.modal-overlay {
+  animation: overlayIn 0.3s ease-out forwards;
+}
+.modal-content {
+  animation: modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 巨型"夏"字水印 */
+.hero-watermark {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(20rem, 50vw, 60rem);
+  font-weight: 900;
+  color: var(--color-bronze);
+  opacity: 0.06;
+  user-select: none;
+  pointer-events: none;
+  line-height: 0.8;
+  z-index: 0;
+}
+
+/* 时间轴节点脉冲 */
+.timeline-node {
+  position: relative;
+}
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.timeline-node:hover::before {
+  opacity: 0.6;
+  inset: -10px;
+}
