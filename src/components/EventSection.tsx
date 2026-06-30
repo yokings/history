@@ -1,9 +1,24 @@
 import { useState } from 'react';
-import { events, type HistoricalEvent } from '../data/events';
+import type { HistoricalEvent, EventCategory } from '../types/dynasty';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
-export function EventSection() {
+const categoryDanger: Record<EventCategory, boolean> = {
+  founding: false,
+  war: true,
+  reform: false,
+  prosperity: false,
+  disaster: true,
+  fall: true,
+  culture: false,
+  diplomacy: false,
+};
+
+interface EventSectionProps {
+  events: HistoricalEvent[];
+}
+
+export function EventSection({ events }: EventSectionProps) {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
   const [selected, setSelected] = useState<HistoricalEvent | null>(null);
 
@@ -22,14 +37,14 @@ export function EventSection() {
           <h2 className="font-display text-5xl md:text-6xl text-gradient-gold mb-4">历史事件</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
           <p className="font-serif text-jade/60 tracking-wider">
-            七大关键事件 · 兴衰转折 · 王朝命运
+            关键事件 · 兴衰转折 · 王朝命运
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {events.map((event, idx) => {
             const isLast = idx === events.length - 1;
-            const isDanger = event.id === 4 || event.id === 6 || event.id === 7;
+            const isDanger = categoryDanger[event.category] ?? false;
             return (
               <button
                 key={event.id}
@@ -44,7 +59,6 @@ export function EventSection() {
                   borderColor: isDanger ? 'rgba(168, 50, 50, 0.25)' : 'rgba(201, 169, 97, 0.15)',
                 }}
               >
-                {/* 图标与编号 */}
                 <div className="flex items-center justify-between mb-4">
                   <div
                     className="w-12 h-12 rounded-sm flex items-center justify-center font-display text-2xl border transition-all duration-300 group-hover:scale-110"
@@ -57,13 +71,19 @@ export function EventSection() {
                     {event.icon}
                   </div>
                   <span className="font-serif text-5xl text-gold/10 group-hover:text-gold/20 transition-colors">
-                    0{event.id}
+                    {String(event.id).padStart(2, '0')}
                   </span>
                 </div>
 
                 <h3 className="font-display text-2xl text-gradient-gold mb-2">{event.title}</h3>
                 <p className="text-xs text-gold/60 tracking-widest mb-3">{event.time}</p>
                 <p className="text-sm text-jade/70 leading-relaxed line-clamp-3">{event.summary}</p>
+
+                {event.textbookPoints && event.textbookPoints.length > 0 && (
+                  <span className="inline-block mt-3 px-2 py-0.5 text-[10px] text-cinnabar border border-cinnabar/30 rounded-sm bg-cinnabar/5">
+                    📖 课本考点
+                  </span>
+                )}
 
                 <div className="mt-4 flex items-center gap-2 text-gold/60 group-hover:text-gold transition-colors text-xs tracking-widest">
                   展开详情
@@ -84,7 +104,7 @@ export function EventSection() {
 
 function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () => void }) {
   useLockBodyScroll(true);
-  const isDanger = event.id === 4 || event.id === 6 || event.id === 7;
+  const isDanger = categoryDanger[event.category] ?? false;
   const accent = isDanger ? 'var(--color-cinnabar)' : 'var(--color-gold)';
 
   return (
@@ -154,6 +174,21 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
                 ))}
               </div>
             </div>
+
+            {event.textbookPoints && event.textbookPoints.length > 0 && (
+              <div className="p-4 bg-cinnabar/5 border border-cinnabar/20 rounded-sm">
+                <h4 className="font-serif text-cinnabar text-sm tracking-widest mb-2 flex items-center gap-2">
+                  📖 课本考点
+                </h4>
+                <ul className="space-y-1">
+                  {event.textbookPoints.map((p, i) => (
+                    <li key={i} className="text-jade/80 text-sm leading-relaxed pl-3 border-l-2 border-cinnabar/40">
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

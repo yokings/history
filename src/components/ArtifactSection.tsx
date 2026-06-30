@@ -1,9 +1,26 @@
 import { useState } from 'react';
-import { artifacts, artifactTagLabels, type Artifact } from '../data/artifacts';
+import type { Artifact, ArtifactTag } from '../types/dynasty';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
-export function ArtifactSection() {
+const artifactTagLabels: Record<ArtifactTag, string> = {
+  'national-treasure': '国宝',
+  bronze: '青铜',
+  jade: '玉器',
+  pottery: '陶器',
+  painting: '书画',
+  calligraphy: '书法',
+  porcelain: '瓷器',
+  silk: '丝织',
+  stone: '石刻',
+  'gold-silver': '金银器',
+};
+
+interface ArtifactSectionProps {
+  artifacts: Artifact[];
+}
+
+export function ArtifactSection({ artifacts }: ArtifactSectionProps) {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
   const [selected, setSelected] = useState<Artifact | null>(null);
 
@@ -22,7 +39,7 @@ export function ArtifactSection() {
           <h2 className="font-display text-5xl md:text-6xl text-gradient-gold mb-4">国宝文物</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
           <p className="font-serif text-jade/60 tracking-wider">
-            二里头遗址 · 夏代遗珍 · 华夏瑰宝
+            传世遗珍 · 华夏瑰宝 · 文明见证
           </p>
         </div>
 
@@ -36,15 +53,20 @@ export function ArtifactSection() {
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              {/* 图片区 */}
               <div className="relative h-56 overflow-hidden bg-bg-deep">
-                <img
-                  src={artifact.imageUrl}
-                  alt={artifact.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  style={{ filter: 'brightness(0.9) contrast(1.1)' }}
-                />
+                {artifact.imageUrl ? (
+                  <img
+                    src={artifact.imageUrl}
+                    alt={artifact.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    style={{ filter: 'brightness(0.9) contrast(1.1)' }}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-bg-dark/50">
+                    <span className="font-display text-6xl text-gold/20">{artifact.name.charAt(0)}</span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
                 {artifact.tag === 'national-treasure' && (
                   <div className="absolute top-3 left-3 seal-tag animate-glow-pulse">
@@ -53,7 +75,6 @@ export function ArtifactSection() {
                 )}
               </div>
 
-              {/* 文字区 */}
               <div className="p-5">
                 <div className="flex items-baseline justify-between mb-2">
                   <h3 className="font-display text-xl text-gradient-gold">{artifact.name}</h3>
@@ -102,24 +123,29 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
           ×
         </button>
 
-        {/* 大图 */}
-        <div className="relative h-72 md:h-96 overflow-hidden bg-bg-deep">
-          <img
-            src={artifact.imageUrl}
-            alt={artifact.name}
-            className="w-full h-full object-cover"
-            style={{ filter: 'brightness(0.95) contrast(1.15)' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
-        </div>
+        {artifact.imageUrl && (
+          <div className="relative h-72 md:h-96 overflow-hidden bg-bg-deep">
+            <img
+              src={artifact.imageUrl}
+              alt={artifact.name}
+              className="w-full h-full object-cover"
+              style={{ filter: 'brightness(0.95) contrast(1.15)' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+          </div>
+        )}
 
         <div className="p-8 md:p-10">
           <div className="flex items-baseline gap-3 mb-2 flex-wrap">
             <h3 className="font-display text-4xl text-gradient-gold">{artifact.name}</h3>
             {isTreasure && <span className="seal-tag animate-glow-pulse">国宝</span>}
+            {!isTreasure && (
+              <span className="text-xs text-bronze-light/70 border border-bronze/30 px-2 py-0.5 rounded-sm">
+                {artifactTagLabels[artifact.tag]}
+              </span>
+            )}
           </div>
 
-          {/* 信息条 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 p-4 bg-bg-deep/50 border border-gold/10 rounded-sm">
             <div>
               <div className="text-xs text-jade/40 tracking-widest mb-1">年代</div>
@@ -133,6 +159,12 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
               <div className="text-xs text-jade/40 tracking-widest mb-1">材质</div>
               <div className="font-serif text-gold-light text-sm">{artifact.material}</div>
             </div>
+            {artifact.location && (
+              <div>
+                <div className="text-xs text-jade/40 tracking-widest mb-1">现藏</div>
+                <div className="font-serif text-gold-light text-sm">{artifact.location}</div>
+              </div>
+            )}
           </div>
 
           <div className="space-y-6">
@@ -151,6 +183,21 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
                 {artifact.significance}
               </p>
             </div>
+
+            {artifact.textbookPoints && artifact.textbookPoints.length > 0 && (
+              <div className="p-4 bg-cinnabar/5 border border-cinnabar/20 rounded-sm">
+                <h4 className="font-serif text-cinnabar text-sm tracking-widest mb-2 flex items-center gap-2">
+                  📖 课本考点
+                </h4>
+                <ul className="space-y-1">
+                  {artifact.textbookPoints.map((p, i) => (
+                    <li key={i} className="text-jade/80 text-sm leading-relaxed pl-3 border-l-2 border-cinnabar/40">
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

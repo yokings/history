@@ -1,16 +1,21 @@
 import { useState } from 'react';
-import { quizQuestions } from '../data/quiz';
+import type { QuizQuestion } from '../types/dynasty';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-export function QuizSection() {
+interface QuizSectionProps {
+  questions: QuizQuestion[];
+  dynastyName: string;
+}
+
+export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
   const [current, setCurrent] = useState(0);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [answers, setAnswers] = useState<number[]>([]);
   const [finished, setFinished] = useState(false);
 
-  const question = quizQuestions[current];
-  const total = quizQuestions.length;
+  const question = questions[current];
+  const total = questions.length;
   const isAnswered = selectedIdx !== null;
   const isCorrect = isAnswered && selectedIdx === question.correctIndex;
 
@@ -36,7 +41,7 @@ export function QuizSection() {
     setFinished(false);
   };
 
-  const score = answers.filter((a, i) => a === quizQuestions[i].correctIndex).length;
+  const score = answers.filter((a, i) => a === questions[i].correctIndex).length;
 
   return (
     <section id="quiz" className="relative py-24 md:py-32 bg-bg-deep overflow-hidden">
@@ -53,18 +58,30 @@ export function QuizSection() {
           <h2 className="font-display text-5xl md:text-6xl text-gradient-gold mb-4">知识问答</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
           <p className="font-serif text-jade/60 tracking-wider">
-            检验所学 · 温故知新
+            {dynastyName}考点精练 · 对标中小学历史课本
           </p>
         </div>
 
         <div className="max-w-2xl mx-auto">
           {!finished ? (
             <div className="bg-bg-card/60 border border-gold/20 rounded-sm p-8 md:p-10 backdrop-blur-sm">
-              {/* 进度条 */}
               <div className="mb-8">
                 <div className="flex justify-between text-xs text-jade/50 tracking-widest mb-2">
                   <span>第 {current + 1} 题 / 共 {total} 题</span>
-                  <span>已答 {answers.length} 题</span>
+                  <span className="flex items-center gap-2">
+                    {question.difficulty && (
+                      <span className={`px-1.5 py-0.5 rounded-sm text-[10px] ${
+                        question.difficulty === 'easy' ? 'bg-bronze-dark/40 text-bronze-light' :
+                        question.difficulty === 'medium' ? 'bg-gold/10 text-gold' :
+                        'bg-cinnabar/20 text-cinnabar'
+                      }`}>
+                        {question.difficulty === 'easy' ? '基础' : question.difficulty === 'medium' ? '中等' : '拔高'}
+                      </span>
+                    )}
+                    {question.textbookSource && (
+                      <span className="text-cinnabar">📖 {question.textbookSource}</span>
+                    )}
+                  </span>
                 </div>
                 <div className="h-1 bg-bg-deep rounded-full overflow-hidden">
                   <div
@@ -74,15 +91,13 @@ export function QuizSection() {
                 </div>
               </div>
 
-              {/* 题目 */}
               <h3 className="font-serif text-xl md:text-2xl text-jade mb-6 leading-relaxed">
                 {question.question}
               </h3>
 
-              {/* 选项 */}
               <div className="space-y-3 mb-8">
                 {question.options.map((opt, idx) => {
-                  const optionLabels = ['甲', '乙', '丙', '丁'];
+                  const optionLabels = ['甲', '乙', '丙', '丁', '戊', '己'];
                   let bgClass = 'bg-bg-deep/50 border-gold/15 hover:border-gold/40 hover:bg-bg-deep/80';
                   let textClass = 'text-jade/80';
                   if (isAnswered) {
@@ -118,7 +133,6 @@ export function QuizSection() {
                 })}
               </div>
 
-              {/* 反馈与下一步 */}
               {isAnswered && (
                 <div className="animate-fade-in-up">
                   <div
@@ -143,7 +157,6 @@ export function QuizSection() {
               )}
             </div>
           ) : (
-            /* 结果页 */
             <div className="bg-bg-card/60 border border-gold/30 rounded-sm p-8 md:p-12 backdrop-blur-sm text-center">
               <p className="font-serif text-gold/70 tracking-[0.4em] text-xs mb-4">RESULT</p>
               <div className="font-display text-7xl text-gradient-gold mb-2">
@@ -151,9 +164,9 @@ export function QuizSection() {
               </div>
               <p className="font-serif text-jade/70 text-lg mb-2">
                 {score === total
-                  ? '满分！你已是夏史达人'
+                  ? '满分！你已是该朝代历史达人'
                   : score >= total * 0.8
-                  ? '优秀！夏史知识扎实'
+                  ? '优秀！历史知识扎实'
                   : score >= total * 0.6
                   ? '良好！仍有进步空间'
                   : '继续努力！温习一遍再来'}
