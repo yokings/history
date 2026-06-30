@@ -5,9 +5,11 @@ interface HomePageProps {
   onSelectDynasty: (id: string) => void;
 }
 
-// 朝代颜色映射（每个朝代有自己的主题色）
+// 朝代颜色映射（每个朝代有自己的主题色，与各朝代 accent 一致）
 const dynastyColors: Record<string, { primary: string; secondary: string; bg: string }> = {
   xia: { primary: '#c9a961', secondary: '#3a6b5c', bg: 'from-bronze-dark/20 to-bg-deep' },
+  shang: { primary: '#b87a20', secondary: '#4a2c1a', bg: 'from-amber-900/20 to-bg-deep' },
+  zhou: { primary: '#b8860b', secondary: '#556b2f', bg: 'from-yellow-900/15 to-bg-deep' },
 };
 
 export function HomePage({ onSelectDynasty }: HomePageProps) {
