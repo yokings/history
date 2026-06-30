@@ -54,10 +54,10 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
 
       <div ref={ref} className={`container mx-auto px-6 reveal ${isVisible ? 'is-visible' : ''}`}>
         <div className="text-center mb-12">
-          <p className="font-serif text-gold/70 tracking-[0.4em] text-xs mb-3">EXAMINATION</p>
+          <p className="font-serif text-gold/85 tracking-[0.4em] text-xs mb-3">EXAMINATION</p>
           <h2 className="font-display text-5xl md:text-6xl text-gradient-gold mb-4">知识问答</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
-          <p className="font-serif text-jade/60 tracking-wider">
+          <p className="font-serif text-jade/80 tracking-wider">
             {dynastyName}考点精练 · 对标中小学历史课本
           </p>
         </div>
@@ -66,7 +66,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
           {!finished ? (
             <div className="bg-white/70 border border-gold/20 rounded-sm p-8 md:p-10 backdrop-blur-sm">
               <div className="mb-8">
-                <div className="flex justify-between text-xs text-jade/50 tracking-widest mb-2">
+                <div className="flex justify-between text-xs text-jade/70 tracking-widest mb-2">
                   <span>第 {current + 1} 题 / 共 {total} 题</span>
                   <span className="flex items-center gap-2">
                     {question.difficulty && (
@@ -99,7 +99,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
                 {question.options.map((opt, idx) => {
                   const optionLabels = ['甲', '乙', '丙', '丁', '戊', '己'];
                   let bgClass = 'bg-white/50 border-gold/15 hover:border-gold/40 hover:bg-white/80';
-                  let textClass = 'text-jade/80';
+                  let textClass = 'text-jade/90';
                   if (isAnswered) {
                     if (idx === question.correctIndex) {
                       bgClass = 'bg-bronze-dark/40 border-bronze-light';
@@ -120,7 +120,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
                         !isAnswered ? 'cursor-pointer' : 'cursor-default'
                       }`}
                     >
-                      <span className="font-display text-lg text-gold/70 w-6">{optionLabels[idx]}</span>
+                      <span className="font-display text-lg text-gold/85 w-6">{optionLabels[idx]}</span>
                       <span className="flex-1">{opt}</span>
                       {isAnswered && idx === question.correctIndex && (
                         <span className="text-bronze-light text-xl">✓</span>
@@ -145,7 +145,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
                     <p className={`font-serif text-sm mb-1 ${isCorrect ? 'text-bronze-light' : 'text-cinnabar'}`}>
                       {isCorrect ? '答对了！' : '答错了'}
                     </p>
-                    <p className="text-jade/70 text-sm leading-relaxed">{question.explanation}</p>
+                    <p className="text-jade/85 text-sm leading-relaxed">{question.explanation}</p>
                   </div>
                   <button
                     onClick={handleNext}
@@ -158,11 +158,11 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
             </div>
           ) : (
             <div className="bg-white/70 border border-gold/30 rounded-sm p-8 md:p-12 backdrop-blur-sm text-center">
-              <p className="font-serif text-gold/70 tracking-[0.4em] text-xs mb-4">RESULT</p>
+              <p className="font-serif text-gold/85 tracking-[0.4em] text-xs mb-4">RESULT</p>
               <div className="font-display text-7xl text-gradient-gold mb-2">
-                {score} <span className="text-3xl text-jade/40">/ {total}</span>
+                {score} <span className="text-3xl text-jade/60">/ {total}</span>
               </div>
-              <p className="font-serif text-jade/70 text-lg mb-2">
+              <p className="font-serif text-jade/85 text-lg mb-2">
                 {score === total
                   ? '满分！你已是该朝代历史达人'
                   : score >= total * 0.8
@@ -171,7 +171,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
                   ? '良好！仍有进步空间'
                   : '继续努力！温习一遍再来'}
               </p>
-              <p className="text-jade/50 text-sm mb-8">
+              <p className="text-jade/70 text-sm mb-8">
                 答对 {score} 题 · 答错 {total - score} 题
               </p>
 

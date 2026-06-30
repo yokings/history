@@ -35,10 +35,10 @@ export function ArtifactSection({ artifacts }: ArtifactSectionProps) {
 
       <div ref={ref} className={`container mx-auto px-6 reveal ${isVisible ? 'is-visible' : ''}`}>
         <div className="text-center mb-16">
-          <p className="font-serif text-gold/70 tracking-[0.4em] text-xs mb-3">TREASURES</p>
+          <p className="font-serif text-gold/85 tracking-[0.4em] text-xs mb-3">TREASURES</p>
           <h2 className="font-display text-5xl md:text-6xl text-gradient-gold mb-4">国宝文物</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
-          <p className="font-serif text-jade/60 tracking-wider">
+          <p className="font-serif text-jade/80 tracking-wider">
             传世遗珍 · 华夏瑰宝 · 文明见证
           </p>
         </div>
@@ -84,8 +84,8 @@ export function ArtifactSection({ artifacts }: ArtifactSectionProps) {
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-gold/50 tracking-wider mb-2">{artifact.era}</p>
-                <p className="text-sm text-jade/70 leading-relaxed line-clamp-2">{artifact.summary}</p>
+                <p className="text-xs text-gold/70 tracking-wider mb-2">{artifact.era}</p>
+                <p className="text-sm text-jade/85 leading-relaxed line-clamp-2">{artifact.summary}</p>
               </div>
             </button>
           ))}
@@ -117,7 +117,7 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
 
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-jade/50 hover:text-gold transition-colors text-2xl w-10 h-10 flex items-center justify-center bg-white/50 rounded-full"
+          className="absolute top-4 right-4 z-10 text-jade/70 hover:text-gold transition-colors text-2xl w-10 h-10 flex items-center justify-center bg-white/50 rounded-full"
           aria-label="关闭"
         >
           ×
@@ -148,20 +148,20 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 p-4 bg-white/50 border border-gold/10 rounded-sm">
             <div>
-              <div className="text-xs text-jade/40 tracking-widest mb-1">年代</div>
+              <div className="text-xs text-jade/60 tracking-widest mb-1">年代</div>
               <div className="font-serif text-gold-light text-sm">{artifact.era}</div>
             </div>
             <div>
-              <div className="text-xs text-jade/40 tracking-widest mb-1">出土地</div>
+              <div className="text-xs text-jade/60 tracking-widest mb-1">出土地</div>
               <div className="font-serif text-gold-light text-sm">{artifact.unearthed}</div>
             </div>
             <div>
-              <div className="text-xs text-jade/40 tracking-widest mb-1">材质</div>
+              <div className="text-xs text-jade/60 tracking-widest mb-1">材质</div>
               <div className="font-serif text-gold-light text-sm">{artifact.material}</div>
             </div>
             {artifact.location && (
               <div>
-                <div className="text-xs text-jade/40 tracking-widest mb-1">现藏</div>
+                <div className="text-xs text-jade/60 tracking-widest mb-1">现藏</div>
                 <div className="font-serif text-gold-light text-sm">{artifact.location}</div>
               </div>
             )}
@@ -172,14 +172,14 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
               <h4 className="font-serif text-gold text-sm tracking-widest mb-3 flex items-center gap-2">
                 <span className="w-6 h-px bg-gold/50" /> 详细描述
               </h4>
-              <p className="text-jade/80 leading-relaxed">{artifact.description}</p>
+              <p className="text-jade/90 leading-relaxed">{artifact.description}</p>
             </div>
 
             <div>
               <h4 className="font-serif text-gold text-sm tracking-widest mb-3 flex items-center gap-2">
                 <span className="w-6 h-px bg-gold/50" /> 历史意义
               </h4>
-              <p className="text-jade/80 leading-relaxed italic border-l-2 pl-4" style={{ borderColor: `${accent}66` }}>
+              <p className="text-jade/90 leading-relaxed italic border-l-2 pl-4" style={{ borderColor: `${accent}66` }}>
                 {artifact.significance}
               </p>
             </div>
@@ -191,7 +191,7 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
                 </h4>
                 <ul className="space-y-1">
                   {artifact.textbookPoints.map((p, i) => (
-                    <li key={i} className="text-jade/80 text-sm leading-relaxed pl-3 border-l-2 border-cinnabar/40">
+                    <li key={i} className="text-jade/90 text-sm leading-relaxed pl-3 border-l-2 border-cinnabar/40">
                       {p}
                     </li>
                   ))}

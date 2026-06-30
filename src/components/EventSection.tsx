@@ -33,10 +33,10 @@ export function EventSection({ events }: EventSectionProps) {
 
       <div ref={ref} className={`container mx-auto px-6 reveal ${isVisible ? 'is-visible' : ''}`}>
         <div className="text-center mb-16">
-          <p className="font-serif text-gold/70 tracking-[0.4em] text-xs mb-3">CHRONICLES</p>
+          <p className="font-serif text-gold/85 tracking-[0.4em] text-xs mb-3">CHRONICLES</p>
           <h2 className="font-display text-5xl md:text-6xl text-gradient-gold mb-4">历史事件</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
-          <p className="font-serif text-jade/60 tracking-wider">
+          <p className="font-serif text-jade/80 tracking-wider">
             关键事件 · 兴衰转折 · 王朝命运
           </p>
         </div>
@@ -76,8 +76,8 @@ export function EventSection({ events }: EventSectionProps) {
                 </div>
 
                 <h3 className="font-display text-2xl text-gradient-gold mb-2">{event.title}</h3>
-                <p className="text-xs text-gold/60 tracking-widest mb-3">{event.time}</p>
-                <p className="text-sm text-jade/70 leading-relaxed line-clamp-3">{event.summary}</p>
+                <p className="text-xs text-gold/80 tracking-widest mb-3">{event.time}</p>
+                <p className="text-sm text-jade/85 leading-relaxed line-clamp-3">{event.summary}</p>
 
                 {event.textbookPoints && event.textbookPoints.length > 0 && (
                   <span className="inline-block mt-3 px-2 py-0.5 text-[10px] text-cinnabar border border-cinnabar/30 rounded-sm bg-cinnabar/8">
@@ -85,7 +85,7 @@ export function EventSection({ events }: EventSectionProps) {
                   </span>
                 )}
 
-                <div className="mt-4 flex items-center gap-2 text-gold/60 group-hover:text-gold transition-colors text-xs tracking-widest">
+                <div className="mt-4 flex items-center gap-2 text-gold/80 group-hover:text-gold transition-colors text-xs tracking-widest">
                   展开详情
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M3 7 H11 M7 3 L11 7 L7 11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -123,7 +123,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
         <div className="p-8 md:p-10">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-jade/50 hover:text-gold transition-colors text-2xl"
+            className="absolute top-4 right-4 text-jade/70 hover:text-gold transition-colors text-2xl"
             aria-label="关闭"
           >
             ×
@@ -138,7 +138,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
             </div>
             <div>
               <h3 className="font-display text-4xl text-gradient-gold">{event.title}</h3>
-              <p className="text-sm text-gold/60 tracking-widest mt-1">{event.time}</p>
+              <p className="text-sm text-gold/80 tracking-widest mt-1">{event.time}</p>
             </div>
           </div>
 
@@ -147,14 +147,14 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
               <h4 className="font-serif text-gold text-sm tracking-widest mb-3 flex items-center gap-2">
                 <span className="w-6 h-px bg-gold/50" /> 事件经过
               </h4>
-              <p className="text-jade/80 leading-relaxed">{event.details}</p>
+              <p className="text-jade/90 leading-relaxed">{event.details}</p>
             </div>
 
             <div>
               <h4 className="font-serif text-gold text-sm tracking-widest mb-3 flex items-center gap-2">
                 <span className="w-6 h-px bg-gold/50" /> 历史影响
               </h4>
-              <p className="text-jade/80 leading-relaxed italic border-l-2 pl-4" style={{ borderColor: `${accent}66` }}>
+              <p className="text-jade/90 leading-relaxed italic border-l-2 pl-4" style={{ borderColor: `${accent}66` }}>
                 {event.impact}
               </p>
             </div>
@@ -167,7 +167,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
                 {event.figures.map((f) => (
                   <span
                     key={f}
-                    className="px-3 py-1 bg-white/50 border border-gold/20 rounded-sm text-sm text-jade/80 font-serif"
+                    className="px-3 py-1 bg-white/50 border border-gold/20 rounded-sm text-sm text-jade/90 font-serif"
                   >
                     {f}
                   </span>
@@ -182,7 +182,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
                 </h4>
                 <ul className="space-y-1">
                   {event.textbookPoints.map((p, i) => (
-                    <li key={i} className="text-jade/80 text-sm leading-relaxed pl-3 border-l-2 border-cinnabar/40">
+                    <li key={i} className="text-jade/90 text-sm leading-relaxed pl-3 border-l-2 border-cinnabar/40">
                       {p}
                     </li>
                   ))}

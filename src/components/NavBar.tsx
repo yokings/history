@@ -66,7 +66,7 @@ export function NavBar({ dynasty, onNavigateHome }: NavBarProps) {
           className="font-display text-2xl text-gradient-gold tracking-widest flex items-center gap-2"
         >
           {onNavigateHome && dynasty && (
-            <span className="text-sm text-gold-dark/50 hover:text-gold transition-colors mr-1" onClick={(e) => { e.stopPropagation(); onNavigateHome(); }}>
+            <span className="text-sm text-gold-dark/80 hover:text-gold transition-colors mr-1" onClick={(e) => { e.stopPropagation(); onNavigateHome(); }}>
               ← 朝代
             </span>
           )}
@@ -79,7 +79,7 @@ export function NavBar({ dynasty, onNavigateHome }: NavBarProps) {
                 key={item.id}
                 onClick={() => handleClick(item.id)}
                 className={`font-serif text-sm tracking-wider transition-colors duration-300 relative group ${
-                  activeId === item.id ? 'text-gold-dark' : 'text-warmgray/70 hover:text-jade'
+                  activeId === item.id ? 'text-gold-dark' : 'text-warmgray/90 hover:text-jade'
                 }`}
               >
                 {item.label}

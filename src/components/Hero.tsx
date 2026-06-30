@@ -86,16 +86,16 @@ export function Hero({ dynasty }: HeroProps) {
         }`}
         style={{ opacity: scrollOpacity }}
       >
-        <p className="font-serif text-gold-dark/60 tracking-[0.4em] text-sm mb-6">{dynasty.period}</p>
+        <p className="font-serif text-gold-dark/80 tracking-[0.4em] text-sm mb-6">{dynasty.period}</p>
 
         <h1 className="font-display text-7xl md:text-9xl text-gradient-gold mb-4 leading-none drop-shadow-sm">
           {dynasty.name}
         </h1>
 
-        <p className="font-serif text-bronze/60 text-lg md:text-xl tracking-widest mb-2">
+        <p className="font-serif text-bronze text-lg md:text-xl tracking-widest mb-2">
           {dynasty.accent.subtitle}
         </p>
-        <p className="font-serif text-warmgray/60 text-sm tracking-wider mb-6 max-w-xl mx-auto">
+        <p className="font-serif text-warmgray/80 text-sm tracking-wider mb-6 max-w-xl mx-auto">
           {dynasty.summary.slice(0, 50)}……
         </p>
 
@@ -103,7 +103,7 @@ export function Hero({ dynasty }: HeroProps) {
           {dynasty.highlights.map((h) => (
             <span
               key={h}
-              className="px-3 py-1 text-xs font-serif border border-gold/25 text-jade/70 rounded-full bg-white/40 backdrop-blur-sm shadow-sm"
+              className="px-3 py-1 text-xs font-serif border border-gold/25 text-jade/85 rounded-full bg-white/40 backdrop-blur-sm shadow-sm"
             >
               {h}
             </span>
@@ -121,9 +121,9 @@ export function Hero({ dynasty }: HeroProps) {
             >
               <div className="font-serif text-2xl md:text-3xl text-gradient-gold mb-1">
                 {s.value}
-                {s.unit && <span className="text-sm text-gold-dark/60 ml-1">{s.unit}</span>}
+                {s.unit && <span className="text-sm text-gold-dark/80 ml-1">{s.unit}</span>}
               </div>
-              <div className="text-xs text-warmgray/60 tracking-widest">{s.label}</div>
+              <div className="text-xs text-warmgray/80 tracking-widest">{s.label}</div>
             </div>
           ))}
         </div>
@@ -131,7 +131,7 @@ export function Hero({ dynasty }: HeroProps) {
 
       <button
         onClick={scrollToNext}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-gold/50 hover:text-gold transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-gold/70 hover:text-gold transition-colors"
         style={{ opacity: scrollOpacity }}
         aria-label="向下滚动"
       >

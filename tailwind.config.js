@@ -27,8 +27,8 @@ export default {
         },
         // 珊瑚朱砂（考点/警示）
         cinnabar: '#d4726c',
-        jade: '#3d3028',
-        warmgray: '#8a7a6d',
+        jade: '#2a1f18',
+        warmgray: '#5c4d42',
       },
       fontFamily: {
         serif: ['"Noto Serif SC"', 'serif'],

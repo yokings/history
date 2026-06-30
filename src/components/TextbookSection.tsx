@@ -22,7 +22,7 @@ export function TextbookSection({ textbook }: TextbookSectionProps) {
           <p className="font-serif text-cinnabar/80 tracking-[0.4em] text-xs mb-3">📖 TEXTBOOK</p>
           <h2 className="font-display text-4xl md:text-5xl text-gradient-gold mb-4">课本考点</h2>
           <div className="meander-divider w-32 mx-auto mb-4" />
-          <p className="font-serif text-jade/60 tracking-wider">
+          <p className="font-serif text-jade/80 tracking-wider">
             对标统编版历史教材 · 必背知识点 · 高频考点
           </p>
         </div>
@@ -49,7 +49,7 @@ export function TextbookSection({ textbook }: TextbookSectionProps) {
                 </h4>
                 <ul className="space-y-1.5">
                   {tb.keyPoints.map((p, i) => (
-                    <li key={i} className="text-jade/80 text-sm leading-relaxed pl-4 relative">
+                    <li key={i} className="text-jade/90 text-sm leading-relaxed pl-4 relative">
                       <span className="absolute left-0 text-cinnabar/70">•</span>
                       {p}
                     </li>
@@ -63,7 +63,7 @@ export function TextbookSection({ textbook }: TextbookSectionProps) {
                 </h4>
                 <ul className="space-y-1.5">
                   {tb.examFrequent.map((p, i) => (
-                    <li key={i} className="text-jade/80 text-sm leading-relaxed pl-4 relative">
+                    <li key={i} className="text-jade/90 text-sm leading-relaxed pl-4 relative">
                       <span className="absolute left-0 text-gold">★</span>
                       {p}
                     </li>

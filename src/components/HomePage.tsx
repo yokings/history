@@ -70,16 +70,16 @@ export function HomePage({ onSelectDynasty }: HomePageProps) {
         </div>
 
         <div className={`relative z-10 text-center transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <p className="font-serif text-gold-dark/50 tracking-[0.5em] text-xs md:text-sm mb-6">五千年文明 · 交互式学习</p>
+          <p className="font-serif text-gold-dark/80 tracking-[0.5em] text-xs md:text-sm mb-6">五千年文明 · 交互式学习</p>
 
           <h1 className="font-display text-6xl md:text-8xl text-gradient-gold mb-4 leading-none tracking-widest">
             华夏史册
           </h1>
 
-          <p className="font-serif text-bronze/60 text-base md:text-lg tracking-widest mb-3">
+          <p className="font-serif text-bronze text-base md:text-lg tracking-widest mb-3">
             以史为鉴 · 可以知兴替
           </p>
-          <p className="font-serif text-warmgray/50 text-sm tracking-wider mb-12 max-w-xl mx-auto leading-relaxed">
+          <p className="font-serif text-warmgray/80 text-sm tracking-wider mb-12 max-w-xl mx-auto leading-relaxed">
             从夏商周到明清，逐朝探索帝王世系、关键事件、国宝文物<br />
             对标中小学历史课本，考点标注，边玩边学
           </p>
@@ -92,7 +92,7 @@ export function HomePage({ onSelectDynasty }: HomePageProps) {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold/50 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold/70 animate-bounce">
           <span className="text-xs tracking-widest font-serif">选择朝代开始探索</span>
           <svg width="16" height="24" viewBox="0 0 20 32" fill="none">
             <path d="M10 4 V26 M4 20 L10 28 L16 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -104,7 +104,7 @@ export function HomePage({ onSelectDynasty }: HomePageProps) {
       <section className="relative py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="font-serif text-gold/50 tracking-[0.4em] text-xs mb-3">DYNASTIES</p>
+            <p className="font-serif text-gold/80 tracking-[0.4em] text-xs mb-3">DYNASTIES</p>
             <h2 className="font-display text-4xl md:text-5xl text-gradient-gold mb-4">选择朝代</h2>
             <div className="meander-divider w-32 mx-auto" />
           </div>
@@ -138,10 +138,10 @@ export function HomePage({ onSelectDynasty }: HomePageProps) {
                     <div className="flex-1 text-center md:text-left">
                       <div className="flex items-center justify-center md:justify-start gap-3 mb-2 flex-wrap">
                         <h3 className="font-display text-2xl md:text-3xl text-gradient-gold">{d.fullName}</h3>
-                        <span className="text-xs text-warmgray/50 font-serif tracking-wider">{d.period}</span>
+                        <span className="text-xs text-warmgray/85 font-serif tracking-wider">{d.period}</span>
                       </div>
 
-                      <p className="text-sm text-jade/60 leading-relaxed mb-3 line-clamp-2">
+                      <p className="text-sm text-jade/80 leading-relaxed mb-3 line-clamp-2">
                         {d.summary}
                       </p>
 
@@ -168,7 +168,7 @@ export function HomePage({ onSelectDynasty }: HomePageProps) {
                       )}
                     </div>
 
-                    <div className="flex-shrink-0 text-gold/40 group-hover:text-gold group-hover:translate-x-2 transition-all duration-300">
+                    <div className="flex-shrink-0 text-gold/60 group-hover:text-gold group-hover:translate-x-2 transition-all duration-300">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <path d="M10 6 L22 14 L10 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
@@ -178,9 +178,9 @@ export function HomePage({ onSelectDynasty }: HomePageProps) {
               );
             })}
 
-            <div className="text-center py-8 opacity-50">
-              <p className="font-serif text-warmgray/50 text-sm tracking-widest mb-2">更多朝代即将推出</p>
-              <p className="text-warmgray/40 text-xs">运行 <code className="text-gold/60 bg-gold/5 px-1.5 py-0.5 rounded">npm run gen 朝代名</code> 添加新朝代</p>
+            <div className="text-center py-8 opacity-70">
+              <p className="font-serif text-warmgray/80 text-sm tracking-widest mb-2">更多朝代即将推出</p>
+              <p className="text-warmgray/85 text-xs">运行 <code className="text-gold/80 bg-gold/5 px-1.5 py-0.5 rounded">npm run gen 朝代名</code> 添加新朝代</p>
             </div>
           </div>
         </div>
