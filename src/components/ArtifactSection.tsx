@@ -25,7 +25,7 @@ export function ArtifactSection({ artifacts }: ArtifactSectionProps) {
   const [selected, setSelected] = useState<Artifact | null>(null);
 
   return (
-    <section id="artifacts" className="relative py-24 md:py-32 bg-bg-dark overflow-hidden">
+    <section id="artifacts" className="relative py-24 md:py-32 bg-transparent overflow-hidden">
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
@@ -48,26 +48,26 @@ export function ArtifactSection({ artifacts }: ArtifactSectionProps) {
             <button
               key={artifact.id}
               onClick={() => setSelected(artifact)}
-              className={`card-gold-glow group text-left bg-bg-card/60 border border-gold/15 hover:border-gold/40 rounded-sm overflow-hidden backdrop-blur-sm transition-all duration-500 ${
+              className={`card-gold-glow group text-left bg-white/60 border border-gold/15 hover:border-gold/40 rounded-sm overflow-hidden backdrop-blur-sm transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <div className="relative h-56 overflow-hidden bg-bg-deep">
+              <div className="relative h-56 overflow-hidden bg-white/50">
                 {artifact.imageUrl ? (
                   <img
                     src={artifact.imageUrl}
                     alt={artifact.name}
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    style={{ filter: 'brightness(0.9) contrast(1.1)' }}
+                    style={{ filter: 'brightness(0.95) contrast(1.05)' }}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-bg-dark/50">
+                  <div className="w-full h-full flex items-center justify-center bg-white/70">
                     <span className="font-display text-6xl text-gold/20">{artifact.name.charAt(0)}</span>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
                 {artifact.tag === 'national-treasure' && (
                   <div className="absolute top-3 left-3 seal-tag animate-glow-pulse">
                     {artifactTagLabels[artifact.tag]}
@@ -105,11 +105,11 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay"
-      style={{ background: 'rgba(10, 8, 7, 0.9)', backdropFilter: 'blur(10px)' }}
+      style={{ background: 'rgba(247, 242, 234, 0.7)', backdropFilter: 'blur(12px)' }}
       onClick={onClose}
     >
       <div
-        className="modal-content relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-bg-card border rounded-sm"
+        className="modal-content relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-white/90 backdrop-blur-xl border rounded-sm"
         style={{ borderColor: `${accent}55` }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -117,21 +117,21 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
 
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-jade/50 hover:text-gold transition-colors text-2xl w-10 h-10 flex items-center justify-center bg-bg-deep/60 rounded-full"
+          className="absolute top-4 right-4 z-10 text-jade/50 hover:text-gold transition-colors text-2xl w-10 h-10 flex items-center justify-center bg-white/50 rounded-full"
           aria-label="关闭"
         >
           ×
         </button>
 
         {artifact.imageUrl && (
-          <div className="relative h-72 md:h-96 overflow-hidden bg-bg-deep">
+          <div className="relative h-72 md:h-96 overflow-hidden bg-white/50">
             <img
               src={artifact.imageUrl}
               alt={artifact.name}
               className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.95) contrast(1.15)' }}
+              style={{ filter: 'brightness(1) contrast(1.05)' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
           </div>
         )}
 
@@ -146,7 +146,7 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 p-4 bg-bg-deep/50 border border-gold/10 rounded-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 p-4 bg-white/50 border border-gold/10 rounded-sm">
             <div>
               <div className="text-xs text-jade/40 tracking-widest mb-1">年代</div>
               <div className="font-serif text-gold-light text-sm">{artifact.era}</div>
@@ -185,7 +185,7 @@ function ArtifactModal({ artifact, onClose }: { artifact: Artifact; onClose: () 
             </div>
 
             {artifact.textbookPoints && artifact.textbookPoints.length > 0 && (
-              <div className="p-4 bg-cinnabar/5 border border-cinnabar/20 rounded-sm">
+              <div className="p-4 bg-cinnabar/8 border border-cinnabar/20 rounded-sm">
                 <h4 className="font-serif text-cinnabar text-sm tracking-widest mb-2 flex items-center gap-2">
                   📖 课本考点
                 </h4>

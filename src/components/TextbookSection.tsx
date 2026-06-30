@@ -9,7 +9,7 @@ export function TextbookSection({ textbook }: TextbookSectionProps) {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <section id="textbook" className="relative py-20 md:py-24 bg-bg-dark overflow-hidden">
+    <section id="textbook" className="relative py-20 md:py-24 bg-transparent overflow-hidden">
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
@@ -31,7 +31,7 @@ export function TextbookSection({ textbook }: TextbookSectionProps) {
           {textbook.map((tb, idx) => (
             <div
               key={idx}
-              className={`bg-bg-card/60 border border-cinnabar/20 rounded-sm p-6 backdrop-blur-sm transition-all duration-500 ${
+              className={`bg-white/60 border border-cinnabar/20 rounded-sm p-6 backdrop-blur-sm transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${idx * 150}ms` }}

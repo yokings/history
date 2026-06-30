@@ -2,29 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=ZCOOL+XiaoWei&display=swap');
+
 :root {
-  /* 背景色系 */
-  --color-bg-deep: #0a0807;
-  --color-bg-dark: #14100d;
-  --color-bg-card: #1c1714;
+  /* ── 浅色温馨科幻配色 ── */
+  /* 背景色系 —— 暖宣纸/月光白 */
+  --color-bg-deep: #f7f2ea;
+  --color-bg-dark: #faf6f0;
+  --color-bg-card: rgba(255, 253, 249, 0.72);
 
-  /* 青铜色系 */
-  --color-bronze: #3a6b5c;
-  --color-bronze-light: #6ba883;
-  --color-bronze-dark: #1f3d34;
+  /* 科技青 —— 天青蓝/薄荷（点缀色） */
+  --color-bronze: #5b9a9d;
+  --color-bronze-light: #7bc0c4;
+  --color-bronze-dark: #3d7679;
 
-  /* 金箔色系 */
-  --color-gold: #c9a961;
-  --color-gold-light: #e8c97a;
-  --color-gold-dark: #8a7340;
+  /* 暖金/玫瑰金 —— 主色 */
+  --color-gold: #d4a063;
+  --color-gold-light: #f0c887;
+  --color-gold-dark: #a87d4a;
 
-  /* 强调色 */
-  --color-cinnabar: #a83232;
-  --color-jade: #e8e4d8;
+  /* 珊瑚朱砂 —— 警示/考点 */
+  --color-cinnabar: #d4726c;
+  --color-jade: #3d3028;
+
+  /* 辅助色 */
+  --color-warm-gray: #8a7a6d;
+  --color-soft-pink: #f5dcd4;
+  --color-glow-blue: #a8d4e0;
 
   /* 字体 */
   --font-serif: 'Noto Serif SC', serif;
-  --font-sans: 'Noto Sans SC', sans-serif;
+  --font-sans: 'Noto Sans SC', 'Outfit', sans-serif;
   --font-display: 'ZCOOL XiaoWei', serif;
 }
 
@@ -38,25 +46,30 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--color-bg-deep);
+  background: var(--color-bg-deep);
   color: var(--color-jade);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 15% 20%, rgba(245, 220, 212, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(168, 212, 224, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(212, 160, 99, 0.08) 0%, transparent 60%);
+  background-attachment: fixed;
 }
 
 /* 自定义滚动条 */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-dark);
+  background: rgba(212, 160, 99, 0.06);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--color-bronze), var(--color-gold-dark));
-  border-radius: 5px;
+  background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold));
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-gold);
@@ -64,8 +77,8 @@ body {
 
 /* 文字选择 */
 ::selection {
-  background: var(--color-gold);
-  color: var(--color-bg-deep);
+  background: var(--color-gold-light);
+  color: #fff;
 }
 
 /* 通用工具类 */
@@ -73,69 +86,82 @@ body {
   font-family: var(--font-display);
 }
 
+/* 金色渐变文字 —— 更亮更温暖 */
 .text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+  background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 40%, var(--color-gold-light) 70%, var(--color-cinnabar) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-bronze {
-  background: linear-gradient(135deg, var(--color-bronze-light) 0%, var(--color-bronze) 50%, var(--color-bronze-dark) 100%);
+  background: linear-gradient(135deg, var(--color-bronze-dark) 0%, var(--color-bronze) 50%, var(--color-bronze-light) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* 青铜纹理背景 */
+/* 纹理背景（浅色版：柔光晕染） */
 .bg-bronze-texture {
-  background-color: var(--color-bg-deep);
+  background-color: transparent;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(58, 107, 92, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(201, 169, 97, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(168, 50, 50, 0.03) 0%, transparent 60%);
+    radial-gradient(circle at 20% 30%, rgba(245, 220, 212, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(168, 212, 224, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(212, 160, 99, 0.1) 0%, transparent 60%);
 }
 
-/* 印章式标签 */
+/* 印章式标签 —— 浅色版本 */
 .seal-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 4px 12px;
-  background: var(--color-cinnabar);
-  color: var(--color-jade);
+  background: linear-gradient(135deg, var(--color-cinnabar), #c55d57);
+  color: #fff;
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(168, 50, 50, 0.4);
+  border-radius: 4px;
+  box-shadow: 0 3px 12px rgba(212, 114, 108, 0.35);
 }
 
-/* 回纹分隔线 */
+/* 回纹分隔线 —— 浅色版本 */
 .meander-divider {
   height: 24px;
   background-image: repeating-linear-gradient(
     90deg,
     transparent 0,
     transparent 8px,
-    var(--color-gold-dark) 8px,
-    var(--color-gold-dark) 10px,
+    var(--color-gold) 8px,
+    var(--color-gold) 10px,
     transparent 10px,
     transparent 18px,
-    var(--color-gold-dark) 18px,
-    var(--color-gold-dark) 20px
+    var(--color-gold) 18px,
+    var(--color-gold) 20px
   );
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
-/* 卡片悬浮金边 */
+/* 卡片悬浮光晕 —— 浅色科幻版：毛玻璃+暖光晕 */
 .card-gold-glow {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(212, 160, 99, 0.18);
+  box-shadow:
+    0 4px 20px rgba(212, 160, 99, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.04);
 }
 .card-gold-glow:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--color-gold), 0 0 40px rgba(201, 169, 97, 0.3);
+  transform: translateY(-6px);
+  border-color: rgba(212, 160, 99, 0.45);
+  box-shadow:
+    0 20px 50px rgba(212, 160, 99, 0.18),
+    0 8px 20px rgba(91, 154, 157, 0.08),
+    0 0 0 1px rgba(212, 160, 99, 0.3),
+    0 0 60px rgba(245, 220, 212, 0.5);
 }
 
 /* 滚动渐显 */
@@ -149,13 +175,11 @@ body {
   transform: translateY(0);
 }
 
-/* 青铜粒子 */
+/* 柔光粒子（金色+青色光晕） */
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--color-bronze-light) 0%, transparent 70%);
   pointer-events: none;
-  opacity: 0.5;
 }
 
 /* 弹窗动画 */
@@ -174,21 +198,23 @@ body {
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* 巨型"夏"字水印 */
+/* 巨型水印字 —— 浅色版 */
 .hero-watermark {
   position: absolute;
   font-family: var(--font-display);
   font-size: clamp(20rem, 50vw, 60rem);
   font-weight: 900;
-  color: var(--color-bronze);
-  opacity: 0.06;
+  background: linear-gradient(135deg, rgba(212, 160, 99, 0.06) 0%, rgba(91, 154, 157, 0.04) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   user-select: none;
   pointer-events: none;
   line-height: 0.8;
   z-index: 0;
 }
 
-/* 时间轴节点脉冲 */
+/* 时间轴节点脉冲 —— 浅色版 */
 .timeline-node {
   position: relative;
 }
@@ -202,6 +228,72 @@ body {
   transition: all 0.4s ease;
 }
 .timeline-node:hover::before {
-  opacity: 0.6;
+  opacity: 0.5;
   inset: -10px;
 }
+
+/* 浅色版浮动动画 */
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-25px) translateX(8px); opacity: 0.7; }
+}
+
+/* 淡入上移动画 */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+/* 脉冲发光（浅色版） */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(212, 114, 108, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(212, 114, 108, 0.5), 0 0 50px rgba(245, 220, 212, 0.4); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Line-clamp 工具类 */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 科幻扫描线效果（可选装饰） */
+.sci-scanline {
+  position: relative;
+  overflow: hidden;
+}
+.sci-scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(168, 212, 224, 0.03) 50%, transparent 100%);
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* 暖光晕（背景装饰球） */
+.warm-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.4;
+}
+

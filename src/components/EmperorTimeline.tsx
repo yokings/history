@@ -32,7 +32,7 @@ export function EmperorTimeline({ emperors, dynastyName }: EmperorTimelineProps)
   const [selected, setSelected] = useState<Emperor | null>(null);
 
   return (
-    <section id="emperors" className="relative py-24 md:py-32 bg-bg-dark overflow-hidden">
+    <section id="emperors" className="relative py-24 md:py-32 bg-transparent overflow-hidden">
       <div className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(58, 107, 92, 0.15), transparent 50%)',
@@ -73,7 +73,7 @@ export function EmperorTimeline({ emperors, dynastyName }: EmperorTimelineProps)
                       className="timeline-node group flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300 hover:scale-110"
                       style={{
                         borderColor: emperorTagColors[emperor.tag],
-                        background: 'var(--color-bg-deep)',
+                        background: 'rgba(255, 255, 255, 0.9)',
                       }}
                       aria-label={`查看${emperor.name}详情`}
                     >
@@ -89,7 +89,7 @@ export function EmperorTimeline({ emperors, dynastyName }: EmperorTimelineProps)
                   <div className={`flex-1 ml-20 md:ml-0 ${isLeft ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
                     <button
                       onClick={() => setSelected(emperor)}
-                      className="card-gold-glow w-full text-left bg-bg-card/60 border border-gold/15 hover:border-gold/40 rounded-sm p-5 backdrop-blur-sm"
+                      className="card-gold-glow w-full text-left bg-white/60 border border-gold/15 hover:border-gold/40 rounded-sm p-5 backdrop-blur-sm"
                     >
                       <div className={`flex items-baseline gap-3 mb-1 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
                         <span className="font-display text-2xl text-gradient-gold">{emperor.name}</span>
@@ -136,11 +136,11 @@ function EmperorCard({ emperor, onClose }: { emperor: Emperor; onClose: () => vo
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay"
-      style={{ background: 'rgba(10, 8, 7, 0.85)', backdropFilter: 'blur(8px)' }}
+      style={{ background: 'rgba(247, 242, 234, 0.7)', backdropFilter: 'blur(12px)' }}
       onClick={onClose}
     >
       <div
-        className="modal-content relative max-w-2xl w-full max-h-[85vh] overflow-y-auto bg-bg-card border border-gold/30 rounded-sm"
+        className="modal-content relative max-w-2xl w-full max-h-[85vh] overflow-y-auto bg-white/90 backdrop-blur-xl border border-gold/30 rounded-sm"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="h-1.5" style={{ background: `linear-gradient(90deg, transparent, ${tagColor}, transparent)` }} />
@@ -173,7 +173,7 @@ function EmperorCard({ emperor, onClose }: { emperor: Emperor; onClose: () => vo
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-8 p-4 bg-bg-deep/50 border border-gold/10 rounded-sm">
+          <div className="grid grid-cols-2 gap-4 mb-8 p-4 bg-white/50 border border-gold/10 rounded-sm">
             <div>
               <div className="text-xs text-jade/40 tracking-widest mb-1">在位时间</div>
               <div className="font-serif text-gold-light">{emperor.reign}</div>
@@ -187,7 +187,7 @@ function EmperorCard({ emperor, onClose }: { emperor: Emperor; onClose: () => vo
           </div>
 
           {emperor.textbookPoints && emperor.textbookPoints.length > 0 && (
-            <div className="mb-6 p-4 bg-cinnabar/5 border border-cinnabar/20 rounded-sm">
+            <div className="mb-6 p-4 bg-cinnabar/8 border border-cinnabar/20 rounded-sm">
               <h4 className="font-serif text-cinnabar text-sm tracking-widest mb-2 flex items-center gap-2">
                 📖 课本考点
               </h4>

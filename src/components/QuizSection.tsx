@@ -44,7 +44,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
   const score = answers.filter((a, i) => a === questions[i].correctIndex).length;
 
   return (
-    <section id="quiz" className="relative py-24 md:py-32 bg-bg-deep overflow-hidden">
+    <section id="quiz" className="relative py-24 md:py-32 bg-transparent overflow-hidden">
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
@@ -64,7 +64,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
 
         <div className="max-w-2xl mx-auto">
           {!finished ? (
-            <div className="bg-bg-card/60 border border-gold/20 rounded-sm p-8 md:p-10 backdrop-blur-sm">
+            <div className="bg-white/70 border border-gold/20 rounded-sm p-8 md:p-10 backdrop-blur-sm">
               <div className="mb-8">
                 <div className="flex justify-between text-xs text-jade/50 tracking-widest mb-2">
                   <span>第 {current + 1} 题 / 共 {total} 题</span>
@@ -83,7 +83,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
                     )}
                   </span>
                 </div>
-                <div className="h-1 bg-bg-deep rounded-full overflow-hidden">
+                <div className="h-1 bg-gold/3 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-bronze to-gold transition-all duration-500"
                     style={{ width: `${((current + (isAnswered ? 1 : 0)) / total) * 100}%` }}
@@ -98,7 +98,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
               <div className="space-y-3 mb-8">
                 {question.options.map((opt, idx) => {
                   const optionLabels = ['甲', '乙', '丙', '丁', '戊', '己'];
-                  let bgClass = 'bg-bg-deep/50 border-gold/15 hover:border-gold/40 hover:bg-bg-deep/80';
+                  let bgClass = 'bg-white/50 border-gold/15 hover:border-gold/40 hover:bg-white/80';
                   let textClass = 'text-jade/80';
                   if (isAnswered) {
                     if (idx === question.correctIndex) {
@@ -108,7 +108,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
                       bgClass = 'bg-cinnabar/20 border-cinnabar';
                       textClass = 'text-cinnabar';
                     } else {
-                      bgClass = 'bg-bg-deep/30 border-gold/10 opacity-50';
+                      bgClass = 'bg-gold/3 border-gold/10 opacity-50';
                     }
                   }
                   return (
@@ -157,7 +157,7 @@ export function QuizSection({ questions, dynastyName }: QuizSectionProps) {
               )}
             </div>
           ) : (
-            <div className="bg-bg-card/60 border border-gold/30 rounded-sm p-8 md:p-12 backdrop-blur-sm text-center">
+            <div className="bg-white/70 border border-gold/30 rounded-sm p-8 md:p-12 backdrop-blur-sm text-center">
               <p className="font-serif text-gold/70 tracking-[0.4em] text-xs mb-4">RESULT</p>
               <div className="font-display text-7xl text-gradient-gold mb-2">
                 {score} <span className="text-3xl text-jade/40">/ {total}</span>

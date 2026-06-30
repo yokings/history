@@ -23,7 +23,7 @@ export function EventSection({ events }: EventSectionProps) {
   const [selected, setSelected] = useState<HistoricalEvent | null>(null);
 
   return (
-    <section id="events" className="relative py-24 md:py-32 bg-bg-deep overflow-hidden">
+    <section id="events" className="relative py-24 md:py-32 bg-transparent overflow-hidden">
       <div
         className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
@@ -49,7 +49,7 @@ export function EventSection({ events }: EventSectionProps) {
               <button
                 key={event.id}
                 onClick={() => setSelected(event)}
-                className={`card-gold-glow group text-left bg-bg-card/60 border rounded-sm p-6 backdrop-blur-sm transition-all duration-500 ${
+                className={`card-gold-glow group text-left bg-white/60 border rounded-sm p-6 backdrop-blur-sm transition-all duration-500 ${
                   isLast ? 'md:col-span-2 lg:col-span-1' : ''
                 } ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -63,10 +63,10 @@ export function EventSection({ events }: EventSectionProps) {
                   <div
                     className="w-12 h-12 rounded-sm flex items-center justify-center font-display text-2xl border transition-all duration-300 group-hover:scale-110"
                     style={{
-                      borderColor: isDanger ? 'var(--color-cinnabar)' : 'var(--color-gold)',
-                      color: isDanger ? 'var(--color-cinnabar)' : 'var(--color-gold)',
-                      background: 'var(--color-bg-deep)',
-                    }}
+                        borderColor: isDanger ? 'var(--color-cinnabar)' : 'var(--color-gold)',
+                        color: isDanger ? 'var(--color-cinnabar)' : 'var(--color-gold)',
+                        background: 'rgba(255, 255, 255, 0.9)',
+                      }}
                   >
                     {event.icon}
                   </div>
@@ -80,7 +80,7 @@ export function EventSection({ events }: EventSectionProps) {
                 <p className="text-sm text-jade/70 leading-relaxed line-clamp-3">{event.summary}</p>
 
                 {event.textbookPoints && event.textbookPoints.length > 0 && (
-                  <span className="inline-block mt-3 px-2 py-0.5 text-[10px] text-cinnabar border border-cinnabar/30 rounded-sm bg-cinnabar/5">
+                  <span className="inline-block mt-3 px-2 py-0.5 text-[10px] text-cinnabar border border-cinnabar/30 rounded-sm bg-cinnabar/8">
                     📖 课本考点
                   </span>
                 )}
@@ -110,11 +110,11 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay"
-      style={{ background: 'rgba(10, 8, 7, 0.85)', backdropFilter: 'blur(8px)' }}
+      style={{ background: 'rgba(247, 242, 234, 0.7)', backdropFilter: 'blur(12px)' }}
       onClick={onClose}
     >
       <div
-        className="modal-content relative max-w-3xl w-full max-h-[88vh] overflow-y-auto bg-bg-card border rounded-sm"
+        className="modal-content relative max-w-3xl w-full max-h-[88vh] overflow-y-auto bg-white/90 backdrop-blur-xl border rounded-sm"
         style={{ borderColor: `${accent}55` }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -132,7 +132,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
           <div className="flex items-center gap-4 mb-6">
             <div
               className="w-16 h-16 rounded-sm flex items-center justify-center font-display text-3xl border-2"
-              style={{ borderColor: accent, color: accent, background: 'var(--color-bg-deep)' }}
+              style={{ borderColor: accent, color: accent, background: 'rgba(255, 255, 255, 0.9)' }}
             >
               {event.icon}
             </div>
@@ -167,7 +167,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
                 {event.figures.map((f) => (
                   <span
                     key={f}
-                    className="px-3 py-1 bg-bg-deep/60 border border-gold/20 rounded-sm text-sm text-jade/80 font-serif"
+                    className="px-3 py-1 bg-white/50 border border-gold/20 rounded-sm text-sm text-jade/80 font-serif"
                   >
                     {f}
                   </span>
@@ -176,7 +176,7 @@ function EventModal({ event, onClose }: { event: HistoricalEvent; onClose: () =>
             </div>
 
             {event.textbookPoints && event.textbookPoints.length > 0 && (
-              <div className="p-4 bg-cinnabar/5 border border-cinnabar/20 rounded-sm">
+              <div className="p-4 bg-cinnabar/8 border border-cinnabar/20 rounded-sm">
                 <h4 className="font-serif text-cinnabar text-sm tracking-widest mb-2 flex items-center gap-2">
                   📖 课本考点
                 </h4>

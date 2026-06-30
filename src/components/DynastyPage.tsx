@@ -25,7 +25,7 @@ export function DynastyPage({ dynasty, onNavigateHome }: DynastyPageProps) {
   const quiz = dynasty.quiz_data || [];
 
   return (
-    <div className="min-h-screen bg-bg-deep">
+    <div className="min-h-screen bg-transparent">
       <NavBar dynasty={dynasty} onNavigateHome={onNavigateHome} />
       <main>
         <Hero dynasty={dynasty} />

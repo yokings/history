@@ -5,7 +5,7 @@ interface FooterProps {
 
 export function Footer({ dynastyName, source }: FooterProps) {
   return (
-    <footer className="relative bg-bg-deep border-t border-gold/15 py-12">
+    <footer className="relative bg-transparent border-t border-gold/15 py-12">
       <div className="meander-divider w-48 mx-auto mb-8" />
       <div className="container mx-auto px-6 text-center">
         <p className="font-display text-3xl text-gradient-gold mb-3">{dynastyName || '中华历史'}</p>

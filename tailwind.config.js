@@ -9,33 +9,34 @@ export default {
     },
     extend: {
       colors: {
-        // 背景色系
-        'bg-deep': '#0a0807',
-        'bg-dark': '#14100d',
-        'bg-card': '#1c1714',
-        // 青铜色系
+        // 背景色系 —— 浅色暖调
+        'bg-deep': '#f7f2ea',
+        'bg-dark': '#faf6f0',
+        'bg-card': 'rgba(255, 253, 249, 0.72)',
+        // 科技青/薄荷
         bronze: {
-          DEFAULT: '#3a6b5c',
-          light: '#6ba883',
-          dark: '#1f3d34',
+          DEFAULT: '#5b9a9d',
+          light: '#7bc0c4',
+          dark: '#3d7679',
         },
-        // 金箔色系
+        // 暖金/玫瑰金
         gold: {
-          DEFAULT: '#c9a961',
-          light: '#e8c97a',
-          dark: '#8a7340',
+          DEFAULT: '#d4a063',
+          light: '#f0c887',
+          dark: '#a87d4a',
         },
-        // 强调色
-        cinnabar: '#a83232',
-        jade: '#e8e4d8',
+        // 珊瑚朱砂（考点/警示）
+        cinnabar: '#d4726c',
+        jade: '#3d3028',
+        warmgray: '#8a7a6d',
       },
       fontFamily: {
         serif: ['"Noto Serif SC"', 'serif'],
-        sans: ['"Noto Sans SC"', 'sans-serif'],
+        sans: ['"Outfit"', '"Noto Sans SC"', 'sans-serif'],
       },
       animation: {
-        'float-slow': 'float 8s ease-in-out infinite',
-        'float-mid': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 10s ease-in-out infinite',
+        'float-mid': 'float 7s ease-in-out infinite',
         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
         'glow-pulse': 'glowPulse 3s ease-in-out infinite',
         'shimmer': 'shimmer 3s linear infinite',
@@ -43,15 +44,15 @@ export default {
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0) translateX(0)' },
-          '50%': { transform: 'translateY(-20px) translateX(10px)' },
+          '50%': { transform: 'translateY(-25px) translateX(8px)' },
         },
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(30px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(201, 169, 97, 0.3)' },
-          '50%': { boxShadow: '0 0 40px rgba(201, 169, 97, 0.6)' },
+          '0%, 100%': { boxShadow: '0 0 15px rgba(212, 114, 108, 0.3)' },
+          '50%': { boxShadow: '0 0 30px rgba(212, 114, 108, 0.5), 0 0 50px rgba(245, 220, 212, 0.4)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% center' },
